@@ -26,3 +26,9 @@
   --couleur-texte-doux: #6E6659;
   --couleur-fond-doux: #F6E6CC;
 }
+
+.en-tete__logo {
+  display: block;
+  width: 130px;
+  height: auto;
+}
