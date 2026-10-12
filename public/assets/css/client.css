@@ -22,9 +22,10 @@
 
 :root {
   --couleur-fond: #F8F0EB;
-  --couleur-texte: #450202;
   --couleur-texte-doux: #6E6659;
   --couleur-fond-doux: #F6E6CC;
+  --couleur-accent: #F8B955;
+  --couleur-discret-sombre: #A39B8C;
 }
 
 .en-tete__logo {
@@ -141,4 +142,13 @@
 
 .pied__copyright {
   margin: 0;
+}
+
+.pied__titre {
+  color: var(--couleur-accent);
+}
+
+.pied__copyright,
+.pied__liens-legaux a {
+  color: var(--couleur-discret-sombre);
 }
