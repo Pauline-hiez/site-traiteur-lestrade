@@ -1,0 +1,61 @@
+{# Contact details, clickable. Opening hours come from the identity settings. #}
+{% set jours = {
+    'lundi': 'Lundi',
+    'mardi': 'Mardi',
+    'mercredi': 'Mercredi',
+    'jeudi': 'Jeudi',
+    'vendredi': 'Vendredi',
+    'samedi': 'Samedi',
+    'dimanche': 'Dimanche'
+} %}
+
+<footer class="pied">
+    <div class="pied__colonnes">
+
+        <div class="pied__bloc pied__identite">
+            <p class="pied__nom">{{ site.nom|default('Site') }}</p>
+            {% if site.slogan %}
+                <p class="pied__slogan">{{ site.slogan }}</p>
+            {% endif %}
+        </div>
+
+        {% if site.adresse %}
+            <div class="pied__bloc">
+                <h2 class="pied__titre">L'atelier</h2>
+                <address class="pied__adresse">{{ site.adresse|nl2br }}</address>
+            </div>
+        {% endif %}
+
+        {% if site.telephone or site.email %}
+            <div class="pied__bloc">
+                <h2 class="pied__titre">Nous joindre</h2>
+                <ul class="pied__liste">
+                    {% if site.telephone %}
+                        <li><a href="tel:{{ tel_href(site.telephone) }}">{{ site.telephone }}</a></li>
+                    {% endif %}
+                    {% if site.email %}
+                        <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        {% endif %}
+        <div class="pied__bloc">
+            <h2 class="pied__titre">Zone d'intervention</h2>
+            <p class="pied__zone">Dordogne et départements limitrophes.<br>Au-delà, sur devis.</p>
+        </div>
+
+    </div>
+
+    </div>
+
+    <div class="pied__legal">
+        <p class="pied__copyright">© {{ site.nom|default('Site') }}</p>
+        <ul class="pied__liens-legaux">
+            <li><a href="/mentions-legales">Mentions légales</a></li>
+            <li><a href="/confidentialite">Politique de confidentialité</a></li>
+            {% if site.email %}
+                <li><a href="mailto:{{ site.email }}?subject={{ 'Demande de retrait d’une photo'|url_encode }}">Demander le retrait d'une photo</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</footer>

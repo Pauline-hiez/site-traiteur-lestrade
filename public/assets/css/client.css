@@ -41,6 +41,7 @@
 }
 
 .en-tete__devis {
+  display: none;
   margin-top: 0;
 }
 
@@ -89,4 +90,55 @@
   .en-tete--js .menu__liste {
     flex-direction: row;
   }
+
+  .en-tete__devis {
+    display: inline-block;
+  }
+}
+
+/* Pied de page */
+.pied {
+  border-top: 0;
+  background: var(--couleur-lien);
+  color: var(--couleur-fond);
+}
+
+.pied a {
+  color: var(--couleur-fond);
+}
+
+.pied__colonnes {
+  max-width: none;
+  padding: 3rem 2.5rem;
+  align-items: center;
+}
+
+.pied__nom {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.pied__slogan {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.pied__titre {
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.pied__legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  max-width: none;
+  padding: 1rem 2.5rem 2rem;
+  border-top: 1px solid var(--couleur-texte-doux);
+}
+
+.pied__copyright {
+  margin: 0;
 }
