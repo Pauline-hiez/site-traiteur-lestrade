@@ -1,0 +1,72 @@
+{% set jours = {
+    'lundi': 'Lundi',
+    'mardi': 'Mardi',
+    'mercredi': 'Mercredi',
+    'jeudi': 'Jeudi',
+    'vendredi': 'Vendredi',
+    'samedi': 'Samedi',
+    'dimanche': 'Dimanche'
+} %}
+
+<section class="bloc bloc-contact">
+
+    <div class="bloc-contact__corps">
+
+        {% if titre %}
+            <h{{ niveau }}>{{ titre }}</h{{ niveau }}>
+        {% endif %}
+
+        {% if bloc.texte %}
+            {# Texte enrichi saisi dans l'admin : volontairement non échappé. #}
+            {{ bloc.texte|raw }}
+        {% endif %}
+
+        <dl class="bloc-contact__coordonnees">
+            {% if site.adresse %}
+                <div class="bloc-contact__ligne">
+                    <dt>Adresse</dt>
+                    <dd><address>{{ site.adresse|nl2br }}</address></dd>
+                </div>
+            {% endif %}
+            {% if site.telephone %}
+                <div class="bloc-contact__ligne">
+                    <dt>Téléphone</dt>
+                    <dd><a href="tel:{{ tel_href(site.telephone) }}">{{ site.telephone }}</a></dd>
+                </div>
+            {% endif %}
+            {% if site.email %}
+                <div class="bloc-contact__ligne">
+                    <dt>Email</dt>
+                    <dd><a href="mailto:{{ site.email }}">{{ site.email }}</a></dd>
+                </div>
+            {% endif %}
+            {# Provisoire, comme dans le pied de page : aucun champ n'existe pour la zone. #}
+            <div class="bloc-contact__ligne">
+                <dt>Zone</dt>
+                <dd>Dordogne et départements limitrophes.<br>Au-delà, sur devis.</dd>
+            </div>
+        </dl>
+
+        {% if bloc.afficherHoraires and site.horaires %}
+            <dl class="bloc-contact__horaires">
+                {% for cle, libelle in jours %}
+                    {% if site.horaires[cle] %}
+                        <div class="bloc-contact__horaire">
+                            <dt>{{ libelle }}</dt>
+                            <dd>{{ site.horaires[cle] }}</dd>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </dl>
+        {% endif %}
+
+    </div>
+
+    {% include 'partials/image.html.twig' with {
+        asset: bloc.image,
+        alt: bloc.alt,
+        classe: 'bloc-contact__image',
+        sizes: '(min-width: 48rem) 33vw, 100vw'
+    } only %}
+
+</section>

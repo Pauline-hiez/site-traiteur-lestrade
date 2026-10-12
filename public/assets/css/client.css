@@ -49,6 +49,63 @@
   margin-top: 0;
 }
 
+/* Coordonnées (page Contact) */
+.bloc-contact {
+  padding: 0;
+  border-radius: 0;
+  background: none;
+}
+
+.bloc-contact__coordonnees {
+  margin: 0;
+}
+
+.bloc-contact__ligne {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.25rem 0;
+  border-top: 1px solid var(--couleur-texte-doux);
+}
+
+.bloc-contact__ligne:last-child {
+  border-bottom: 1px solid var(--couleur-texte-doux);
+}
+
+.bloc-contact__ligne dt {
+  color: var(--couleur-texte-doux);
+  font-weight: 400;
+}
+
+.bloc-contact__ligne dd {
+  margin: 0;
+  text-align: center;
+}
+
+.bloc-contact__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 2rem;
+}
+
+/* En-tête des pages intérieures */
+.page__titre {
+  margin: 2rem 0 0.5rem;
+  font-family: var(--police-manuscrite);
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+.page__chapo {
+  max-width: 30rem;
+  margin: 0 0 2rem;
+  color: var(--couleur-texte-doux);
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
 /* Appel à l'action */
 .bloc-appel__contenu {
   max-width: 40rem;
@@ -337,6 +394,18 @@ body {
   .bloc-hero__boutons {
     flex-direction: row;
     justify-content: center;
+  }
+
+  .bloc-contact {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+  }
+
+  .bloc-contact__image {
+    height: 100%;
+    margin-top: 0;
+    object-fit: cover;
   }
 }
 

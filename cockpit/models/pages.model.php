@@ -25,7 +25,7 @@ $isTexteImage = "data.type === 'texte-image'";
 $isContact = "data.type === 'contact'";
 $isFormulaire = "data.type === 'formulaire'";
 $isTemoignages = "data.type === 'temoignages'";
-$hasImage = "['hero', 'texte-image'].includes(data.type)";
+$hasImage = "['hero', 'texte-image', 'contact'].includes(data.type)";
 $hasTexte = "['texte-image', 'contact', 'formulaire'].includes(data.type)";
 
 return [
@@ -66,6 +66,21 @@ return [
             'width' => '1-1',
             'opts' => ['placeholder' => 'services'],
         ],
+
+        // ── Ajout Maison Lestrade ─────────────────────────────────────────
+        [
+            'name' => 'chapo',
+            'type' => 'text',
+            'label' => 'Introduction',
+            'info' => 'Phrase affichée sous le titre de la page. Par exemple : Nous rencontrer à l’atelier. Inutile sur l’accueil.',
+            'required' => false,
+            'localize' => false,
+            'multiple' => false,
+            'group' => 'Contenu',
+            'width' => '1-1',
+            'opts' => ['multiline' => true, 'maxlength' => 250],
+        ],
+        // ── Fin de l'ajout Maison Lestrade ────────────────────────────────
 
         // ── Blocs ─────────────────────────────────────────────────────────
         [
