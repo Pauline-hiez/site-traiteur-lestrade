@@ -178,7 +178,7 @@ return [
                         'label' => 'Texte du bouton',
                         'info' => 'Laisser vide pour ne pas afficher de bouton.',
                         'width' => '1-2',
-                        'condition' => $isHero,
+                        'condition' => "['hero', 'texte-image'].includes(data.type)",
                         'opts' => ['maxlength' => 40],
                     ],
                     [
@@ -187,7 +187,7 @@ return [
                         'label' => 'Adresse du bouton',
                         'info' => 'Adresse d’une page du site, par exemple /services.',
                         'width' => '1-2',
-                        'condition' => $isHero,
+                        'condition' => "['hero', 'texte-image'].includes(data.type)",
                         'opts' => ['placeholder' => '/services'],
                     ],
                     // ── Témoignages ─────────────────────────────────────
@@ -273,7 +273,7 @@ return [
                         'label' => 'Surtitre',
                         'info' => 'Petite ligne affichée au-dessus du titre. Par exemple : Traiteur événementiel · Périgueux · Depuis 1998.',
                         'width' => '1-1',
-                        'condition' => $isHero,
+                        'condition' => "['hero', 'texte-image'].includes(data.type)",
                         'opts' => ['maxlength' => 80],
                     ],
                     [
@@ -282,7 +282,7 @@ return [
                         'label' => 'Texte du second bouton',
                         'info' => 'Bouton secondaire, affiché à côté du premier. Laisser vide pour ne pas l’afficher.',
                         'width' => '1-2',
-                        'condition' => $isHero,
+                        'condition' => "['hero', 'texte-image'].includes(data.type)",
                         'opts' => ['maxlength' => 40],
                     ],
                     [
@@ -291,7 +291,7 @@ return [
                         'label' => 'Adresse du second bouton',
                         'info' => 'Adresse d’une page du site, par exemple /formules.',
                         'width' => '1-2',
-                        'condition' => $isHero,
+                        'condition' => "['hero', 'texte-image'].includes(data.type)",
                         'opts' => ['placeholder' => '/formules'],
                     ],
 

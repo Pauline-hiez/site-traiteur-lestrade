@@ -208,6 +208,68 @@
   flex-direction: column;
 }
 
+/* Texte et image (Nos prestations, La maison) */
+.bloc-texte-image {
+  margin: 4rem 0;
+}
+
+.bloc-texte-image__surtitre {
+  margin: 0;
+  color: var(--couleur-texte-doux);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.bloc-texte-image__titre {
+  margin: 0 0 1rem;
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.bloc-texte-image__texte h3 {
+  margin: 1.5rem 0 0.5rem;
+  font-size: 1.375rem;
+  font-weight: 400;
+}
+
+.bloc-texte-image__texte ul,
+.bloc-texte-image__texte ol {
+  margin: 0 0 1rem;
+  padding: 0;
+  list-style-position: inside;
+}
+
+.bloc-texte-image__texte ul {
+  list-style: none;
+}
+
+.bloc-texte-image__texte li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--couleur-texte-doux);
+  font-size: 0.9375rem;
+}
+
+.bloc-texte-image__texte li:first-child {
+  border-top: 1px solid var(--couleur-texte-doux);
+}
+
+.bloc-texte-image__image {
+  border-radius: 0;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.bloc-texte-image__boutons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.bloc-texte-image__texte li>p {
+  display: inline;
+  margin: 0;
+}
+
 body {
   overflow-x: clip;
 }
