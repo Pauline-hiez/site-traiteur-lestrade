@@ -26,6 +26,9 @@
   --couleur-fond-doux: #F6E6CC;
   --couleur-accent: #F8B955;
   --couleur-discret-sombre: #A39B8C;
+  --couleur-discret-sombre: #A39B8C;
+  --police-manuscrite: "Snell Roundhand", Gabriola, "Apple Chancery", Georgia, serif;
+  --police-serif: Georgia, "Times New Roman", serif;
 }
 
 .en-tete__logo {
@@ -116,11 +119,14 @@
 
 .pied__nom {
   margin: 0;
-  font-size: 2rem;
+  font-family: var(--police-manuscrite);
+  font-size: 2.5rem;
+  line-height: 1.1;
 }
 
 .pied__slogan {
   margin: 0;
+  font-family: var(--police-serif);
   font-size: 0.875rem;
 }
 
