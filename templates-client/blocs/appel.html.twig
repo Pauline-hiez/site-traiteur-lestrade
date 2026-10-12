@@ -1,0 +1,21 @@
+{% set presentation = bloc.appelPresentation|default('bandeau') %}
+
+<section class="bloc bloc-appel bloc-appel--{{ presentation }}">
+    <div class="bloc-appel__contenu">
+
+        {% if titre %}
+            <h{{ niveau }} class="bloc-appel__titre">{{ titre }}</h{{ niveau }}>
+        {% endif %}
+
+        {% if bloc.appelTexte %}
+            <p class="bloc-appel__texte">{{ bloc.appelTexte|nl2br }}</p>
+        {% endif %}
+
+        {% if bloc.appelBoutonTexte and bloc.appelBoutonLien %}
+            <p class="bloc-appel__action">
+                <a class="bouton{% if presentation == 'encadre' %} bouton--secondaire{% endif %}" href="{{ bloc.appelBoutonLien }}">{{ bloc.appelBoutonTexte }}</a>
+            </p>
+        {% endif %}
+
+    </div>
+</section>

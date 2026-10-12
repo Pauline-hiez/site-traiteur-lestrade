@@ -1,0 +1,89 @@
+{% set evenements = {
+    'mariage': 'Mariages',
+    'entreprise': 'Séminaires & entreprises',
+    'privee': 'Réceptions privées'
+} %}
+
+{% set legendes = {
+    'mariage': 'Mariage',
+    'entreprise': 'Séminaire',
+    'privee': 'Réception privée'
+} %}
+
+{% set mois = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+    'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'] %}
+
+{% set niveauGroupe = titre ? niveau + 1 : niveau %}
+
+<section class="bloc bloc-galerie{% if bloc.detaillee %} bloc-galerie--detaillee{% endif %}">
+
+    {% if titre %}
+        <h{{ niveau }} class="bloc-galerie__titre">{{ titre }}</h{{ niveau }}>
+    {% endif %}
+
+    {% if bloc.photos is empty %}
+
+        {# Liste vide : un message plutôt qu'une page blanche (support 02). #}
+        {% if bloc.detaillee %}
+            <p>Les photos de nos dernières réceptions arrivent bientôt.</p>
+        {% endif %}
+
+    {% elseif not bloc.detaillee %}
+
+        <ul class="galerie">
+            {% for photo in bloc.photos %}
+                <li class="galerie__element">
+                    {% include 'partials/image.html.twig' with {
+                        asset: photo.image,
+                        alt: photo.alt,
+                        classe: 'galerie__image',
+                        sizes: '(min-width: 48rem) 50vw, 100vw'
+                    } only %}
+                </li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+
+        <nav class="galerie__filtres" aria-label="Types d’événement">
+            <ul>
+                {% for cle, libelle in evenements %}
+                    {% set nombre = bloc.photos|filter(p => p.evenement == cle)|length %}
+                    {% if nombre > 0 %}
+                        <li><a href="#galerie-{{ cle }}">{{ libelle }} ({{ nombre }})</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
+
+        {% for cle, libelle in evenements %}
+            {% set photosGroupe = bloc.photos|filter(p => p.evenement == cle) %}
+            {% if photosGroupe is not empty %}
+                <div class="galerie__groupe" id="galerie-{{ cle }}">
+                    <h{{ niveauGroupe }} class="galerie__groupe-titre">{{ libelle }}</h{{ niveauGroupe }}>
+                    <ul class="galerie">
+                        {% for photo in photosGroupe %}
+                            <li class="galerie__element">
+                                <figure class="galerie__figure">
+                                    {% include 'partials/image.html.twig' with {
+                                        asset: photo.image,
+                                        alt: photo.alt,
+                                        classe: 'galerie__image',
+                                        sizes: '(min-width: 48rem) 50vw, 100vw'
+                                    } only %}
+                                    <figcaption class="galerie__legende">
+                                        {{ legendes[cle] }}
+                                        {%- if photo.lieu %} · {{ photo.lieu }}{% endif %}
+                                        {%- if photo.date %}, {{ mois[(photo.date|date('n')) - 1] }} {{ photo.date|date('Y') }}{% endif %}
+                                    </figcaption>
+                                </figure>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+    {% endif %}
+
+</section>
