@@ -18,6 +18,7 @@
     {# Does nothing for visitors: shows the way back to the admin only to whoever is signed in
        (cockpit/addons/Passerelle). #}
     <script src="/assets/js/passerelle.js" defer></script>
+    <script src="/assets/js/menu.js" defer></script>
     {% if jsonld|default('') is not empty %}
         {# Built and encoded in PHP, so it is inserted as is. #}
         <script type="application/ld+json">{{ jsonld|raw }}</script>
@@ -47,7 +48,15 @@
 </div>
 
     {% if menu|default([]) is not empty or afficherActualites|default(false) %}
-        <nav class="menu" aria-label="Menu principal">
+        <button class="menu-bouton" type="button" aria-expanded="false" aria-controls="menu-principal" aria-label="Menu" hidden>
+            <svg class="menu-bouton__ouvrir" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+            <svg class="menu-bouton__fermer" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                <path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="1.5"/>
+            </svg>
+        </button>
+        <nav class="menu" id="menu-principal" aria-label="Menu principal">
             <ul class="menu__liste">
                 {% for entree in menu %}
                     {% set adresse = entree.slug == accueilSlug|default('accueil') ? '/' : '/' ~ entree.slug %}
@@ -66,6 +75,7 @@
             </ul>
         </nav>
     {% endif %}
+    <a class="bouton en-tete__devis" href="/demander-un-devis">Demander un devis</a>
 </header>
 
 <main id="contenu">
