@@ -19,3 +19,10 @@
 
    Après toute modification : php bin/purge-cache.php
    ───────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --couleur-fond: #F8F0EB;
+  --couleur-texte: #450202;
+  --couleur-texte-doux: #6E6659;
+  --couleur-fond-doux: #F6E6CC;
+}
