@@ -1,0 +1,42 @@
+{% set niveauCarte = titre ? niveau + 1 : niveau %}
+
+<section class="bloc bloc-cartes">
+
+    {% if titre %}
+        <h{{ niveau }} class="bloc-cartes__titre">{{ titre }}</h{{ niveau }}>
+    {% endif %}
+
+    {% if bloc.cartes is not empty %}
+        <ul class="cartes">
+            {% for carte in bloc.cartes %}
+                <li class="carte">
+
+                    {% include 'partials/image.html.twig' with {
+                        asset: carte.image,
+                        alt: carte.alt,
+                        classe: 'carte__image',
+                        sizes: '(min-width: 48rem) 25vw, 100vw'
+                    } only %}
+
+                    {% if carte.precision %}
+                        <p class="carte__precision">{{ carte.precision }}</p>
+                    {% endif %}
+
+                    <h{{ niveauCarte }} class="carte__titre">
+                        {% if carte.lien %}
+                            <a href="{{ carte.lien }}">{{ carte.titre }}</a>
+                        {% else %}
+                            {{ carte.titre }}
+                        {% endif %}
+                    </h{{ niveauCarte }}>
+
+                    {% if carte.texte %}
+                        <p class="carte__texte">{{ carte.texte }}</p>
+                    {% endif %}
+
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</section>
