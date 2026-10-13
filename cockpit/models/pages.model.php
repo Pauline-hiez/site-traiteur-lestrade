@@ -80,6 +80,29 @@ return [
             'width' => '1-1',
             'opts' => ['multiline' => true, 'maxlength' => 250],
         ],
+        [
+            'name' => 'encadreTitre',
+            'type' => 'text',
+            'label' => 'Encadré : titre',
+            'info' => 'Facultatif. Petit encadré à droite du titre de la page, par exemple « Tarifs de saison ». Laisser vide pour ne pas l’afficher.',
+            'required' => false,
+            'localize' => false,
+            'multiple' => false,
+            'group' => 'Contenu',
+            'width' => '1-2',
+            'opts' => ['maxlength' => 40],
+        ],
+        [
+            'name' => 'encadreTexte',
+            'type' => 'text',
+            'label' => 'Encadré : texte',
+            'required' => false,
+            'localize' => false,
+            'multiple' => false,
+            'group' => 'Contenu',
+            'width' => '1-2',
+            'opts' => ['multiline' => true, 'maxlength' => 200],
+        ],
         // ── Fin de l'ajout Maison Lestrade ────────────────────────────────
 
         // ── Blocs ─────────────────────────────────────────────────────────

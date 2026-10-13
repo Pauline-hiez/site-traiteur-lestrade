@@ -18,10 +18,21 @@
 
 {% block main %}
     {% if not titreDansBandeau %}
-        <div class="page__entete">
-            <h1 class="page__titre">{{ page.titre }}</h1>
-            {% if page.chapo %}
-                <p class="page__chapo">{{ page.chapo|nl2br }}</p>
+        <div class="page__entete{% if page.encadreTitre %} page__entete--encadre{% endif %}">
+            <div class="page__intro">
+                <h1 class="page__titre">{{ page.titre }}</h1>
+                {% if page.chapo %}
+                    <p class="page__chapo">{{ page.chapo|nl2br }}</p>
+                {% endif %}
+            </div>
+
+            {% if page.encadreTitre %}
+                <aside class="page__encadre">
+                    <h2 class="page__encadre-titre">{{ page.encadreTitre }}</h2>
+                    {% if page.encadreTexte %}
+                        <p class="page__encadre-texte">{{ page.encadreTexte|nl2br }}</p>
+                    {% endif %}
+                </aside>
             {% endif %}
         </div>
     {% endif %}
