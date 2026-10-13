@@ -1,0 +1,77 @@
+{% set niveauFormule = titre ? niveau + 1 : niveau %}
+{% set nombre = bloc.formules|length %}
+
+{% set nomsAllergenes = {
+    'gluten': 'gluten',
+    'crustaces': 'crustacés',
+    'oeufs': 'œufs',
+    'poissons': 'poissons',
+    'arachides': 'arachides',
+    'soja': 'soja',
+    'lait': 'lait',
+    'fruits-a-coque': 'fruits à coque',
+    'celeri': 'céleri',
+    'moutarde': 'moutarde',
+    'sesame': 'sésame',
+    'sulfites': 'sulfites',
+    'lupin': 'lupin',
+    'mollusques': 'mollusques'
+} %}
+
+<section class="bloc bloc-formules" id="section-{{ rang }}">
+
+    {% if titre %}
+        <div class="bloc-formules__entete">
+            <h{{ niveau }} class="bloc-formules__titre">{{ titre }}</h{{ niveau }}>
+            <p class="bloc-formules__nombre">{{ nombre }} formule{{ nombre > 1 ? 's' }}</p>
+        </div>
+    {% endif %}
+
+    {% if bloc.formules is not empty %}
+        <ul class="formules">
+            {% for formule in bloc.formules %}
+                <li class="formule">
+
+                    {% include 'partials/image.html.twig' with {
+                        asset: formule.image,
+                        alt: formule.alt,
+                        classe: 'formule__image',
+                        sizes: '(min-width: 48rem) 33vw, 100vw'
+                    } only %}
+
+                    <h{{ niveauFormule }} class="formule__nom">{{ formule.nom }}</h{{ niveauFormule }}>
+
+                    <p class="formule__prix">
+                        {{ formule.prix|number_format(formule.prix == formule.prix|round ? 0 : 2, ',', ' ') }} €
+                        <span class="formule__unite">par personne</span>
+                    </p>
+
+                    {% if formule.minimum %}
+                        <p class="formule__minimum">À partir de {{ formule.minimum }} convives</p>
+                    {% endif %}
+
+                    {% if formule.contenu is not empty %}
+                        <ul class="formule__contenu">
+                            {% for element in formule.contenu %}
+                                <li>{{ element.ligne }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                    {% if formule.allergenes is not empty %}
+                        <p class="formule__allergenes">
+                            <strong>Allergènes :</strong>
+                            {{ formule.allergenes|map(a => nomsAllergenes[a.allergene] ?? a.allergene)|join(', ') }}
+                        </p>
+                    {% endif %}
+
+                    <p class="formule__action">
+                        <a class="bouton bouton--secondaire" href="/demander-un-devis">Demander un devis<span class="visuellement-cache"> pour la formule {{ formule.nom }}</span></a>
+                    </p>
+
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</section>

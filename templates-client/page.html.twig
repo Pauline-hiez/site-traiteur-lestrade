@@ -26,6 +26,19 @@
         </div>
     {% endif %}
 
+    {% set categories = page.blocs|filter(b => b.type == 'formules' and b.titre) %}
+    {% if categories is not empty %}
+        <nav class="sommaire" aria-label="Catégories de formules">
+            <ul class="sommaire__liste">
+                {% for bloc in page.blocs %}
+                    {% if bloc.type == 'formules' and bloc.titre %}
+                        <li><a class="sommaire__lien" href="#section-{{ loop.index }}">{{ bloc.titre }}</a></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </nav>
+    {% endif %}
+
     {% for bloc in page.blocs %}
         {% include 'blocs/' ~ bloc.type ~ '.html.twig' with {
             bloc: bloc,
@@ -33,6 +46,7 @@
             titre: titreDansBandeau and loop.first ? page.titre : bloc.titre,
             niveau: titreDansBandeau and loop.first ? 1 : 2,
             premier: loop.first,
+            rang: loop.index,
             slug: slug,
             accueilSlug: accueilSlug,
             contactActif: contactActif|default(false),

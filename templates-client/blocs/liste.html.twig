@@ -1,0 +1,30 @@
+{% set disposition = bloc.listeDisposition|default('lignes') %}
+
+<section class="bloc bloc-liste bloc-liste--{{ disposition }}{% if bloc.listeFond %} bloc-liste--fond{% endif %}">
+    <div class="bloc-liste__contenu">
+
+        <div class="bloc-liste__entete">
+            {% if bloc.surtitre %}
+                <p class="bloc-liste__surtitre">{{ bloc.surtitre }}</p>
+            {% endif %}
+
+            {% if titre %}
+                <h{{ niveau }} class="bloc-liste__titre">{{ titre }}</h{{ niveau }}>
+            {% endif %}
+        </div>
+
+        {% if bloc.elements is not empty %}
+            <ul class="bloc-liste__elements">
+                {% for element in bloc.elements %}
+                    <li class="bloc-liste__element">
+                        <span class="bloc-liste__libelle">{{ element.libelle }}</span>
+                        {% if element.detail %}
+                            <span class="bloc-liste__detail">{{ element.detail|nl2br }}</span>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+    </div>
+</section>

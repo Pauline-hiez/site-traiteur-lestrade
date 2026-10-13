@@ -25,7 +25,7 @@ $isTexteImage = "data.type === 'texte-image'";
 $isContact = "data.type === 'contact'";
 $isFormulaire = "data.type === 'formulaire'";
 $isTemoignages = "data.type === 'temoignages'";
-$hasImage = "['hero', 'texte-image', 'contact'].includes(data.type)";
+$hasImage = "['hero', 'texte-image', 'contact', 'formulaire'].includes(data.type)";
 $hasTexte = "['texte-image', 'contact', 'formulaire'].includes(data.type)";
 
 return [
@@ -112,6 +112,8 @@ return [
                                 ['value' => 'cartes', 'label' => 'Cartes'],
                                 ['value' => 'galerie', 'label' => 'Galerie de photos'],
                                 ['value' => 'appel', 'label' => 'Appel à l\'action'],
+                                ['value' => 'liste', 'label' => 'Liste'],
+                                ['value' => 'formules', 'label' => 'Formules'],
                             ],
                         ],
                     ],
@@ -273,7 +275,7 @@ return [
                         'label' => 'Surtitre',
                         'info' => 'Petite ligne affichée au-dessus du titre. Par exemple : Traiteur événementiel · Périgueux · Depuis 1998.',
                         'width' => '1-1',
-                        'condition' => "['hero', 'texte-image'].includes(data.type)",
+                        'condition' => "['hero', 'texte-image', 'liste'].includes(data.type)",
                         'opts' => ['maxlength' => 80],
                     ],
                     [
@@ -445,12 +447,21 @@ return [
                         ],
                     ],
                     [
+                        'name' => 'appelTitre',
+                        'type' => 'text',
+                        'label' => 'Titre de l’encart',
+                        'info' => 'Encart crème sous les coordonnées, par exemple « Pour un devis ». Laisser vide pour ne pas afficher d’encart.',
+                        'width' => '1-1',
+                        'condition' => "data.type === 'contact'",
+                        'opts' => ['maxlength' => 60],
+                    ],
+                    [
                         'name' => 'appelTexte',
                         'type' => 'text',
                         'label' => 'Texte',
                         'info' => 'Affiché sous le titre de la section.',
                         'width' => '1-1',
-                        'condition' => "data.type === 'appel'",
+                        'condition' => "['appel', 'contact'].includes(data.type)",
                         'opts' => ['multiline' => true, 'maxlength' => 250],
                     ],
                     [
@@ -459,7 +470,7 @@ return [
                         'label' => 'Texte du bouton',
                         'info' => 'Laisser vide pour ne pas afficher de bouton.',
                         'width' => '1-2',
-                        'condition' => "data.type === 'appel'",
+                        'condition' => "['appel', 'contact'].includes(data.type)",
                         'opts' => ['maxlength' => 40],
                     ],
                     [
@@ -468,8 +479,175 @@ return [
                         'label' => 'Adresse du bouton',
                         'info' => 'Adresse d’une page du site, par exemple /demander-un-devis.',
                         'width' => '1-2',
-                        'condition' => "data.type === 'appel'",
+                        'condition' => "['appel', 'contact'].includes(data.type)",
                         'opts' => ['placeholder' => '/demander-un-devis'],
+                    ],
+                    [
+                        'name' => 'listeDisposition',
+                        'type' => 'select',
+                        'label' => 'Disposition',
+                        'info' => 'Lignes : un élément par ligne, le détail à droite (produits locaux). Colonnes : les éléments côte à côte (équipe).',
+                        'width' => '1-2',
+                        'condition' => "data.type === 'liste'",
+                        'opts' => [
+                            'default' => 'lignes',
+                            'options' => [
+                                ['value' => 'lignes', 'label' => 'Lignes'],
+                                ['value' => 'colonnes', 'label' => 'Colonnes'],
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => 'listeFond',
+                        'type' => 'boolean',
+                        'label' => 'Fond crème',
+                        'info' => 'La section s’affiche sur toute la largeur, sur fond crème.',
+                        'width' => '1-2',
+                        'condition' => "data.type === 'liste'",
+                        'opts' => ['default' => false],
+                    ],
+                    [
+                        'name' => 'elements',
+                        'type' => 'set',
+                        'label' => 'Éléments',
+                        'info' => 'Chaque entrée devient une ligne, ou une colonne, de la liste.',
+                        'multiple' => true,
+                        'width' => '1-1',
+                        'condition' => "data.type === 'liste'",
+                        'opts' => [
+                            'display' => '${data.libelle || \'Élément\'}',
+                            'fields' => [
+                                [
+                                    'name' => 'libelle',
+                                    'type' => 'text',
+                                    'label' => 'Libellé',
+                                    'required' => true,
+                                    'width' => '1-2',
+                                    'opts' => ['maxlength' => 80],
+                                ],
+                                [
+                                    'name' => 'detail',
+                                    'type' => 'text',
+                                    'label' => 'Détail',
+                                    'info' => 'Facultatif. Par exemple : Du Périgord.',
+                                    'width' => '1-2',
+                                    'opts' => ['multiline' => true, 'maxlength' => 200],
+                                ],
+                            ],
+                        ],
+                    ],
+                    [
+                        'name' => 'formules',
+                        'type' => 'set',
+                        'label' => 'Formules',
+                        'info' => 'Chaque entrée devient une carte de formule dans cette catégorie.',
+                        'multiple' => true,
+                        'width' => '1-1',
+                        'condition' => "data.type === 'formules'",
+                        'opts' => [
+                            'display' => '${data.nom || \'Formule\'}',
+                            'fields' => [
+                                [
+                                    'name' => 'nom',
+                                    'type' => 'text',
+                                    'label' => 'Nom de la formule',
+                                    'required' => true,
+                                    'width' => '1-1',
+                                    'opts' => ['maxlength' => 60],
+                                ],
+                                [
+                                    'name' => 'image',
+                                    'type' => 'asset',
+                                    'label' => 'Image',
+                                    'width' => '1-2',
+                                    'opts' => ['filter' => ['type' => 'image']],
+                                ],
+                                [
+                                    'name' => 'alt',
+                                    'type' => 'text',
+                                    'label' => 'Description de l’image',
+                                    'info' => 'Lue par les lecteurs d’écran. Décrire ce que l’on voit.',
+                                    'width' => '1-2',
+                                    'opts' => ['maxlength' => 150],
+                                ],
+                                [
+                                    'name' => 'prix',
+                                    'type' => 'number',
+                                    'label' => 'Prix par personne (€)',
+                                    'info' => 'Un nombre seul. Le site affiche : 22 € par personne.',
+                                    'required' => true,
+                                    'width' => '1-2',
+                                    'opts' => [],
+                                ],
+                                [
+                                    'name' => 'minimum',
+                                    'type' => 'number',
+                                    'label' => 'Minimum de convives',
+                                    'info' => 'Un nombre seul. Le site affiche : À partir de 30 convives.',
+                                    'width' => '1-2',
+                                    'opts' => [],
+                                ],
+                                [
+                                    'name' => 'contenu',
+                                    'type' => 'set',
+                                    'label' => 'Contenu de la formule',
+                                    'info' => 'Une entrée par ligne : 8 pièces salées, Entrée, Plat…',
+                                    'multiple' => true,
+                                    'width' => '1-1',
+                                    'opts' => [
+                                        'display' => '${data.ligne || \'Ligne\'}',
+                                        'fields' => [
+                                            [
+                                                'name' => 'ligne',
+                                                'type' => 'text',
+                                                'label' => 'Ligne',
+                                                'required' => true,
+                                                'width' => '1-1',
+                                                'opts' => ['maxlength' => 80],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                                [
+                                    'name' => 'allergenes',
+                                    'type' => 'set',
+                                    'label' => 'Allergènes',
+                                    'info' => 'Une entrée par allergène présent dans la formule, choisi dans la liste réglementaire.',
+                                    'multiple' => true,
+                                    'width' => '1-1',
+                                    'opts' => [
+                                        'display' => '${data.allergene || \'Allergène\'}',
+                                        'fields' => [
+                                            [
+                                                'name' => 'allergene',
+                                                'type' => 'select',
+                                                'label' => 'Allergène',
+                                                'required' => true,
+                                                'width' => '1-1',
+                                                'opts' => [
+                                                    'options' => [
+                                                        ['value' => 'gluten', 'label' => 'Céréales contenant du gluten'],
+                                                        ['value' => 'crustaces', 'label' => 'Crustacés'],
+                                                        ['value' => 'oeufs', 'label' => 'Œufs'],
+                                                        ['value' => 'poissons', 'label' => 'Poissons'],
+                                                        ['value' => 'arachides', 'label' => 'Arachides'],
+                                                        ['value' => 'soja', 'label' => 'Soja'],
+                                                        ['value' => 'lait', 'label' => 'Lait'],
+                                                        ['value' => 'fruits-a-coque', 'label' => 'Fruits à coque'],
+                                                        ['value' => 'celeri', 'label' => 'Céleri'],
+                                                        ['value' => 'moutarde', 'label' => 'Moutarde'],
+                                                        ['value' => 'sesame', 'label' => 'Graines de sésame'],
+                                                        ['value' => 'sulfites', 'label' => 'Sulfites'],
+                                                        ['value' => 'lupin', 'label' => 'Lupin'],
+                                                        ['value' => 'mollusques', 'label' => 'Mollusques'],
+                                                    ],
+                                                ],
+                                            ],
+                                        ],
+                                    ],
+                                ],
+                            ],
+                        ],
                     ],
                     // ── Fin des ajouts Maison Lestrade ──────────────────
                 ],

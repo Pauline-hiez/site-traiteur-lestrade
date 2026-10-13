@@ -58,6 +58,22 @@
                     {% endif %}
                 {% endfor %}
             </dl>
+                {% endif %}
+
+        {% if bloc.appelTitre %}
+            <div class="bloc-contact__encart bloc-appel--encart">
+                <h{{ niveauEncart }} class="bloc-appel__titre">{{ bloc.appelTitre }}</h{{ niveauEncart }}>
+
+                {% if bloc.appelTexte %}
+                    <p class="bloc-appel__texte">{{ bloc.appelTexte|nl2br }}</p>
+                {% endif %}
+
+                {% if bloc.appelBoutonTexte and bloc.appelBoutonLien %}
+                    <p class="bloc-appel__action">
+                        <a class="bouton" href="{{ bloc.appelBoutonLien }}">{{ bloc.appelBoutonTexte }}</a>
+                    </p>
+                {% endif %}
+            </div>
         {% endif %}
 
     </div>

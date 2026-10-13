@@ -26,7 +26,6 @@
   --couleur-fond-doux: #F6E6CC;
   --couleur-accent: #F8B955;
   --couleur-discret-sombre: #A39B8C;
-  --couleur-discret-sombre: #A39B8C;
   --police-manuscrite: "Snell Roundhand", Gabriola, "Apple Chancery", Georgia, serif;
   --police-serif: Georgia, "Times New Roman", serif;
 }
@@ -47,6 +46,302 @@
 .en-tete__devis {
   display: none;
   margin-top: 0;
+}
+
+/* Utilitaire : un élément « hidden » reste caché, quel que soit son display. */
+[hidden] {
+  display: none !important;
+}
+
+/* Formules (Nos formules) */
+.bloc-formules {
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--couleur-texte-doux);
+}
+
+.bloc-formules__titre {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 400;
+}
+
+.bloc-formules__nombre {
+  margin: 0 0 1.5rem;
+  color: var(--couleur-texte-doux);
+  font-size: 1.25rem;
+}
+
+.formules {
+  display: grid;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.formule {
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem 1rem;
+  border: 1px solid var(--couleur-texte-doux);
+  text-align: center;
+}
+
+.formule__image {
+  display: block;
+  width: calc(100% + 2rem);
+  height: auto;
+  margin: 0 -1rem 1rem;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+.formule__nom {
+  margin: 0 0 0.75rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.formule__prix {
+  margin: 0;
+  font-size: 1.375rem;
+  text-align: left;
+}
+
+.formule__unite,
+.formule__minimum,
+.formule__allergenes {
+  color: var(--couleur-texte-doux);
+  font-size: 0.9375rem;
+}
+
+.formule__minimum {
+  margin: 0.5rem 0 1rem;
+  text-align: left;
+}
+
+.formule__contenu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--couleur-texte-doux);
+}
+
+.formule__contenu li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--couleur-texte-doux);
+  font-size: 1.25rem;
+}
+
+.formule__allergenes {
+  margin: 0.75rem 0 1rem;
+}
+
+/* Le bouton descend en bas de la carte : les boutons s'alignent d'une carte à l'autre. */
+.formule__action {
+  margin: auto 0 0;
+}
+
+.formule__action .bouton {
+  display: block;
+}
+
+@media (min-width: 48rem) {
+  .bloc-formules {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+  }
+
+  .formules {
+    grid-column: 2;
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Sommaire des catégories (Nos formules) */
+.sommaire__liste {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.sommaire__lien {
+  display: inline-block;
+  min-width: 7rem;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid var(--couleur-texte-doux);
+  color: inherit;
+  text-align: center;
+  text-decoration: none;
+}
+
+.sommaire__lien:hover {
+  background: var(--couleur-lien);
+  color: var(--couleur-fond);
+}
+
+/* À l'arrivée sur l'ancre, le titre ne colle pas au bord de l'écran. */
+.bloc-formules {
+  scroll-margin-top: 1.5rem;
+}
+
+/* Colonne avec un détail (Bon à savoir) : un vrai texte, aligné à gauche. */
+.bloc-liste--colonnes .bloc-liste__element:has(.bloc-liste__detail) {
+  text-align: left;
+}
+
+.bloc-liste--colonnes .bloc-liste__element:has(.bloc-liste__detail) .bloc-liste__libelle {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--couleur-texte-doux);
+  font-size: 1.5rem;
+}
+
+.bloc-liste--colonnes .bloc-liste__element:has(.bloc-liste__detail) .bloc-liste__detail {
+  color: inherit;
+  font-size: 1rem;
+}
+
+/* Utilitaire : texte lu par les lecteurs d'écran, invisible à l'écran */
+.visuellement-cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Galerie détaillée (Nos réceptions) */
+.galerie__filtres ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.galerie__filtres a {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  border: 1px solid var(--couleur-lien);
+  color: var(--couleur-lien);
+  text-decoration: none;
+}
+
+.galerie__filtres a:hover {
+  background: var(--couleur-fond-doux);
+}
+
+.galerie__filtres a[aria-current="true"] {
+  background: var(--couleur-lien);
+  color: var(--couleur-fond);
+}
+
+.galerie__groupe {
+  margin-bottom: 3rem;
+  scroll-margin-top: 1rem;
+}
+
+.galerie__groupe-titre {
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+
+.galerie__figure {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+}
+
+.galerie__figure .galerie__image {
+  flex: 1;
+  min-height: 0;
+  height: auto;
+}
+
+.galerie__legende {
+  margin-top: 0.4rem;
+  color: var(--couleur-texte-doux);
+  font-size: 0.875rem;
+}
+
+/* Liste (La maison : produits, équipe) */
+.bloc-liste__surtitre {
+  margin: 0;
+  color: var(--couleur-texte-doux);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.bloc-liste__titre {
+  margin: 0.5rem 0 1.5rem;
+  font-size: 2.25rem;
+  font-weight: 400;
+}
+
+.bloc-liste__elements {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Disposition en lignes */
+.bloc-liste--lignes .bloc-liste__element {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 0.25rem 1rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--couleur-texte-doux);
+}
+
+.bloc-liste--lignes .bloc-liste__libelle {
+  font-size: 1.75rem;
+}
+
+.bloc-liste__detail {
+  color: var(--couleur-texte-doux);
+  font-size: 0.9375rem;
+}
+
+/* Disposition en colonnes */
+.bloc-liste--colonnes .bloc-liste__elements {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: 1.5rem;
+}
+
+.bloc-liste--colonnes .bloc-liste__element {
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--couleur-texte-doux);
+  text-align: center;
+}
+
+.bloc-liste--colonnes .bloc-liste__detail {
+  display: block;
+}
+
+/* Fond crème pleine largeur */
+.bloc-liste--fond {
+  margin-inline: calc(50% - 50vw);
+  padding: 4rem 1.25rem;
+  background: var(--couleur-fond-doux);
+}
+
+.bloc-liste--fond .bloc-liste__contenu {
+  max-width: var(--largeur);
+  margin-inline: auto;
 }
 
 /* Coordonnées (page Contact) */
@@ -83,11 +378,186 @@
   text-align: center;
 }
 
+.bloc-contact__encart {
+  margin-top: 2.5rem;
+}
+
 .bloc-contact__image {
+  order: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  object-fit: cover;
+}
+
+/* Les trois parties du devis */
+.devis__groupe {
+  min-width: 0;
+  margin: 0 0 2rem;
+  padding: 0;
+  border: 0;
+}
+
+.devis__titre {
+  display: block;
+  width: 100%;
+  margin: 0 0 1rem;
+  padding: 1.5rem 0 0;
+  border-top: 1px solid var(--couleur-texte-doux);
+  font-size: 2rem;
+  font-weight: 400;
+}
+
+.devis .formulaire__champ {
+  margin-bottom: 1.25rem;
+}
+
+.devis__requis,
+.devis__mention {
+  color: var(--couleur-texte-doux);
+}
+
+.devis__mention {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+/* Groupes de boutons radio : des cases cliquables */
+.devis__choix {
+  display: grid;
+  gap: 0.75rem;
+  min-width: 0;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  border: 0;
+}
+
+.devis__choix legend {
+  margin-bottom: 0.5rem;
+  padding: 0;
+}
+
+.formulaire .devis__option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--couleur-texte-doux);
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.devis__option:has(input:checked) {
+  background: var(--couleur-fond-doux);
+}
+
+.devis__option input {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  accent-color: var(--couleur-lien);
+}
+
+/* Champs date, nombre, téléphone : même aspect que les autres */
+.formulaire input[type="date"],
+.formulaire input[type="number"],
+.formulaire input[type="tel"] {
+  width: 100%;
+  padding: 0.55rem 0.7rem;
+  border: 1px solid var(--couleur-texte-doux);
+  border-radius: 0;
+  background: var(--couleur-fond);
+  color: inherit;
+  font: inherit;
+}
+
+/* Mobile : l'image passe en tête du bloc, en bandeau pleine largeur. */
+.bloc-contact {
+  display: flex;
+  flex-direction: column;
+}
+
+.bloc-contact__image {
+  display: block;
+  order: -1;
+  width: auto;
+  height: 12rem;
+  margin: 0 calc(50% - 50vw) 2rem;
+  object-fit: cover;
+}
+
+/* Formulaire de devis */
+.bloc-formulaire__titre {
+  margin: 0 0 1rem;
+  font-size: 1.75rem;
+  font-weight: 400;
+}
+
+.bloc-formulaire__intro p {
+  color: var(--couleur-texte-doux);
+}
+
+.bloc-formulaire__image {
   display: block;
   width: 100%;
   height: auto;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
+}
+
+.formulaire__aide {
+  color: var(--couleur-texte-doux);
+  font-size: 0.9375rem;
+}
+
+/* Bordures des champs : contraste d'au moins 3:1 avec le fond. */
+.formulaire input[type="text"],
+.formulaire input[type="email"],
+.formulaire textarea {
+  border-color: var(--couleur-texte-doux);
+  border-radius: 0;
+}
+
+@media (min-width: 48rem) {
+  .bloc-formulaire {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .formulaire {
+    max-width: none;
+    margin-top: 0;
+  }
+
+  .devis__choix {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Navigation entre les étapes : Précédent à gauche, Suivant ou Envoyer à droite */
+.devis__navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 1.5rem 0 0;
+}
+
+.devis__navigation> :last-child {
+  margin-left: auto;
+}
+
+/* L'étape 3 garde l'espacement du formulaire entre ses champs. */
+.devis__etape {
+  display: grid;
+  gap: 1.25rem;
+}
+
+/* Le focus est placé sur l'étape par le script, pour que son titre soit
+   annoncé. L'étape n'est pas cliquable : pas de contour autour. */
+[data-etape]:focus {
+  outline: none;
 }
 
 /* En-tête des pages intérieures */
@@ -307,16 +777,6 @@ body {
   gap: 1rem;
 }
 
-.bouton--secondaire {
-  border: 1px solid var(--couleur-lien);
-  background: none;
-  color: var(--couleur-lien);
-}
-
-.bouton--secondaire:hover {
-  background: var(--couleur-fond-doux);
-}
-
 @media (min-width: 48rem) {
   .menu-bouton {
     display: none;
@@ -396,23 +856,6 @@ body {
 }
 
 @media (min-width: 48rem) {
-  .bloc-hero__image {
-    height: 28rem;
-  }
-
-  .bloc-hero__texte {
-    position: relative;
-    max-width: 30rem;
-    margin: -10rem auto 0;
-    padding: 1.5rem 2rem;
-    background: var(--couleur-fond);
-  }
-
-  .bloc-hero__boutons {
-    flex-direction: row;
-    justify-content: center;
-  }
-
   .galerie {
     grid-template-columns: 2fr 1fr;
   }
@@ -469,6 +912,29 @@ body {
     margin-top: 0;
     object-fit: cover;
   }
+
+  .bloc-liste--lignes .bloc-liste__contenu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  /* Image à droite : le texte s'aligne contre elle. */
+  .bloc-texte-image--droite .bloc-texte-image__texte {
+    text-align: right;
+  }
+
+  .bloc-texte-image--droite .bloc-texte-image__boutons {
+    justify-content: flex-end;
+  }
+}
+
+/* Liens du menu : police manuscrite, comme les titres de page */
+.menu__liste a {
+  font-family: var(--police-manuscrite);
+  font-size: 1.375rem;
+  line-height: 1.2;
 }
 
 /* Boutons */
@@ -483,6 +949,16 @@ body {
 .bouton:hover {
   background: var(--couleur-lien);
   text-decoration: underline;
+}
+
+.bouton--secondaire {
+  border: 1px solid var(--couleur-lien);
+  background: none;
+  color: var(--couleur-lien);
+}
+
+.bouton--secondaire:hover {
+  background: var(--couleur-fond-doux);
 }
 
 /* Cartes (« Ce que nous faisons ») */
@@ -551,16 +1027,18 @@ body {
   font-size: 0.9375rem;
 }
 
-.cartes {
-  grid-template-columns: repeat(4, 1fr);
-}
+@media (min-width: 48rem) {
+  .cartes {
+    grid-template-columns: repeat(4, 1fr);
+  }
 
-.carte {
-  grid-template-columns: 1fr;
-}
+  .carte {
+    grid-template-columns: 1fr;
+  }
 
-.carte__image {
-  grid-row: auto;
-  aspect-ratio: 2 / 3;
-  margin-bottom: 0.75rem;
+  .carte__image {
+    grid-row: auto;
+    aspect-ratio: 2 / 3;
+    margin-bottom: 0.75rem;
+  }
 }

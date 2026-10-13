@@ -45,7 +45,7 @@
 
     {% else %}
 
-        <nav class="galerie__filtres" aria-label="Types d’événement">
+        <nav class="galerie__filtres" id="galerie-toutes" aria-label="Types d’événement">
             <ul>
                 {% for cle, libelle in evenements %}
                     {% set nombre = bloc.photos|filter(p => p.evenement == cle)|length %}
@@ -53,6 +53,7 @@
                         <li><a href="#galerie-{{ cle }}">{{ libelle }} ({{ nombre }})</a></li>
                     {% endif %}
                 {% endfor %}
+                <li><a href="#galerie-toutes">Toutes ({{ bloc.photos|length }})</a></li>
             </ul>
         </nav>
 
