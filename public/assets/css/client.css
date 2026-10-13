@@ -675,6 +675,10 @@
   margin: 4rem 0;
 }
 
+.bloc-texte-image[id] {
+  scroll-margin-top: 1.5rem;
+}
+
 .bloc-texte-image__surtitre {
   margin: 0;
   color: var(--couleur-texte-doux);

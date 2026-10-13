@@ -4,7 +4,7 @@
 
 {% set position = bloc.positionImage|default('droite') %}
 
-<section class="bloc bloc-texte-image bloc-texte-image--{{ position }}">
+<section class="bloc bloc-texte-image bloc-texte-image--{{ position }}"{% if bloc.ancre %} id="{{ bloc.ancre }}"{% endif %}>
 
         <div class="bloc-texte-image__texte">
         {% if bloc.surtitre %}

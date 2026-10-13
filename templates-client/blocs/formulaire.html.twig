@@ -77,8 +77,8 @@
                     <fieldset class="devis__choix">
                         <legend>Type d’événement <span class="devis__requis" aria-hidden="true">*</span></legend>
                         {% for type in ['Mariage', 'Séminaire d’entreprise', 'Réception privée', 'Buffet ou plateaux à emporter'] %}
-                            <label class="devis__option">
-                                <input type="radio" name="devis-type" value="{{ type }}" required>
+                            <label class="devis__option" for="devis-type-{{ loop.index }}">
+                                <input type="radio" id="devis-type-{{ loop.index }}" name="devis-type" value="{{ type }}" required>
                                 {{ type }}
                             </label>
                         {% endfor %}
@@ -107,8 +107,8 @@
                         <legend>Formule envisagée</legend>
                         {# À tenir à jour avec la page Nos formules. #}
                         {% for formule in ['Cocktail découverte', 'Cocktail prestige', 'Buffet campagne', 'Repas assis Tradition', 'Repas assis Signature', 'Brunch du lendemain', 'Je ne sais pas encore'] %}
-                            <label class="devis__option">
-                                <input type="radio" name="devis-formule" value="{{ formule }}">
+                            <label class="devis__option" for="devis-formule-{{ loop.index }}">
+                                <input type="radio" id="devis-formule-{{ loop.index }}" name="devis-formule" value="{{ formule }}">
                                 {{ formule }}
                             </label>
                         {% endfor %}

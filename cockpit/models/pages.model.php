@@ -649,6 +649,15 @@ return [
                             ],
                         ],
                     ],
+                    [
+                        'name' => 'ancre',
+                        'type' => 'text',
+                        'label' => 'Ancre',
+                        'info' => 'Facultatif. Un mot en minuscules, sans accent ni espace (ex. : mariages). Permet un lien direct vers cette section : /prestations#mariages',
+                        'width' => '1-2',
+                        'condition' => "data.type === 'texte-image'",
+                        'opts' => ['maxlength' => 40],
+                    ],
                     // ── Fin des ajouts Maison Lestrade ──────────────────
                 ],
             ],
