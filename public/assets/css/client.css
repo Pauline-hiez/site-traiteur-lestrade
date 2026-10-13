@@ -355,6 +355,16 @@
   margin: 0;
 }
 
+.bloc-contact__image {
+  display: block;
+  order: -1;
+  width: 100vw;
+  max-width: none;
+  height: 12rem;
+  margin: 0 0 2rem calc(50% - 50vw);
+  object-fit: cover;
+}
+
 .bloc-contact__ligne {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -525,6 +535,15 @@
 
   .devis__choix {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .bloc-contact__image {
+    order: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    margin: 0;
+    object-fit: cover;
   }
 }
 
