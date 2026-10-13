@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    
     <title>{% block title %}{{ site.nom|default('Site') }}{% endblock %}</title>
+    <link rel="icon" href="/assets/images/favicon-lestrade.png" type="image/png">
     {# Passed in rather than recomputed: the preview title must be the title. #}
     {% include 'partials/meta-sociales.html.twig' with { titrePartage: block('title') } %}
     {% block head %}{% endblock %}
