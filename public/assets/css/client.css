@@ -382,14 +382,6 @@
   margin-top: 2.5rem;
 }
 
-.bloc-contact__image {
-  order: 0;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  object-fit: cover;
-}
-
 /* Les trois parties du devis */
 .devis__groupe {
   min-width: 0;
@@ -908,8 +900,10 @@ body {
   }
 
   .bloc-contact__image {
+    order: 0;
+    width: 100%;
     height: 100%;
-    margin-top: 0;
+    margin: 0;
     object-fit: cover;
   }
 
